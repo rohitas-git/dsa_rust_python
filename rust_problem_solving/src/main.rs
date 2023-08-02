@@ -12,7 +12,7 @@ mod maths;
 
 #[cfg(feature = "maths")]
 use maths::{
-    armstrong::*, divisor::*, factoring::*, gcd_lcd::*, palindrome::*, prime::*, trailing_zero::*,
+    armstrong::*, factoring::*, gcd_lcd::*, palindrome::*, prime::*, trailing_zero::*,
 };
 
 #[cfg(feature = "recursion")]
@@ -32,8 +32,19 @@ fn main() {
         .unwrap_or(&String::from("0"))
         .parse()
         .unwrap_or(0);
+    let n = input;
 
-    prime_factorization::normal(input);
+    // print_all_primes::naive(n);
+    // print_all_primes::sieve_of_eratosthenes(n);
+    print_all_primes::sieve_of_eratosthenes_better(n);
+    
+    // is_prime(input);
+    // is_prime::answer_better(input);
+    // is_prime::answer_super(input);
+
+    // prime_factorization::normal(input);
+    // print_all_divisors::v2(input);
+    // print_all_divisor::v1(input);
 
     // let mut arr = [1, 231, 1241, 41, 15, 12];
     // let l = arr.len();
@@ -58,13 +69,6 @@ fn main() {
     // print_1_to_n::recursion_v2(1,input);
     // print_1_to_n::backtracking(input);
     // print_1_to_n::recursion(input);
-
-    // is_prime(input);
-    // is_prime::answer_better(input);
-    // is_prime::answer_super(input);
-
-    // print_all_divisors_v2(input);
-    // print_all_divisors_v1(input);
 
     // trailing_zeroe_in_factorial(input);
 

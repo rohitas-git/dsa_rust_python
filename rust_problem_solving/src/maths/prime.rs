@@ -73,3 +73,75 @@ pub mod is_prime{
         return true;
     }
 }
+
+pub mod print_all_primes{
+    use super::is_prime::super_efficient as is_prime;
+
+    // check all numbers in 2..n+1 and print those that are prime 
+    // Time: O(n*sqrt(n))
+    pub fn naive(n: u32) {
+
+        for i in 2..(n+1){
+            if is_prime(i){
+                print!("{} ", i);
+            }
+        }
+
+    }
+
+    // In numbers in 2..n+1, leave those numbers that multiplied from primes 
+    // for 2: 4,6,8,10,12 ... till n+1
+    // for 3: 6,9,12,15,18 .. till n+1
+    // 
+    // Print those numbers that are left over from above
+    pub fn sieve_of_eratosthenes(n:u32){
+        if n <=1{
+            return
+        }
+        let n = usize::try_from(n).expect("unable to cast N as usize");
+        let mut is_prime = vec![true; (n-1) as usize];
+        let mut i:usize = 2;
+
+        // O(sqrt(n)*n) ??
+        while i*i <= n {
+            if is_prime[i]{
+                // disable numbers multiplied from prime numbers
+                // O(n) ??
+                for j in ( (2*i)..(n+1)).step_by(i){
+                    is_prime[j] = false;
+                }
+            }
+            i +=1 ;
+        }
+        // O(n) ??
+        for i in 2..(n+1){
+            if is_prime[i] {
+                print!("{} ", i);
+            }
+        }
+    }
+
+    // time: O(N loglogN)
+    // Optmizes the step where we switch off /lay off multiples of prime numbers
+    pub fn sieve_of_eratosthenes_better(n:u32){
+        if n <=1{
+            return
+        }
+        let n = usize::try_from(n).expect("unable to cast N as usize");
+        let mut is_prime = vec![true; (n+1) as usize];
+        let mut i:usize = 2;
+
+        while i <= n {
+
+            if is_prime[i]{
+                print!("{} ", i);
+                for j in ( (i*i)..(n+1)).step_by(i){
+                    is_prime[j] = false;
+                    
+                    if(j+i > n){break;}
+                }
+            }
+            i +=1 ;
+        }
+    }
+}
