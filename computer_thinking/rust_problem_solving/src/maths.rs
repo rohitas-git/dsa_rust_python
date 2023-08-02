@@ -7,3 +7,4 @@ pub mod gcd_lcd;
 pub mod palindrome;
 pub mod prime;
 pub mod trailing_zero;
+pub mod factoring;
