@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "patterns"
+name = "problem_solving"
 version = "0.1.0"
