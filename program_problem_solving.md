@@ -27,13 +27,13 @@ According to Wikipedia, problem solving
 
 In the classic How To Solve It, George Polya outlines a methodology for problem-solving in the context of mathematics. We can easily apply it to programming. Polya’s heuristics can be distilled into four ordinate categories, each with specific questions to ask:
 
-1. Understand the Problem: What is the problem? What is the goal? Describe the issue or bug. What is the console or terminal telling you? If there is no feedback, why might that be so and what can you do about it?
+1. <b>Understand the Problem</b>: What is the problem? What is the goal? Describe the issue or bug. What is the console or terminal telling you? If there is no feedback, why might that be so and what can you do about it?
 
-2. Devise a Plan: Have you seen this problem, or something like it, before? If you haven’t seen this problem before, can you restate it in terms you are familiar with? Can you break the problem down into smaller problems that are familiar and accessible?
+2. <b>Devise a Plan</b>: Have you seen this problem, or something like it, before? If you haven’t seen this problem before, can you restate it in terms you are familiar with? Can you break the problem down into smaller problems that are familiar and accessible?
 
-3. Execute the Plan
+3. <b>Execute the Plan </b>
 
-4. Examine the Solution: What is the solution? Explain it. Can it be modified? If so, what could be improved, if anything? Could we use this solution for other problems?
+4. <b>Examine the Solution</b>: What is the solution? Explain it. Can it be modified? If so, what could be improved, if anything? Could we use this solution for other problems?
 
 ## Programming is Problem Solving
 

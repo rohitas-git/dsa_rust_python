@@ -76,7 +76,7 @@ pub mod print_all_divisors{
             i+=1;
         }
 
-        // print divisor corresponding to divisors in descending order 
+        // print 2nd divisor in the divisor pair corresponding to 1st divisors in descending order 
         while i>= 1 {
             if n % i == 0 && n/i != (i-1){
                 println!("{}", n/i);

@@ -5,3 +5,4 @@ pub mod n;
 pub mod sum;
 pub mod factorial;
 pub mod array;
+pub mod string;

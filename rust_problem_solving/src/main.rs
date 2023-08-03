@@ -11,22 +11,20 @@ use patterns::{alphabet::*, ladder::*, square::*, triangle::*};
 mod maths;
 
 #[cfg(feature = "maths")]
-use maths::{
-    armstrong::*, factoring::*, gcd_lcd::*, palindrome::*, prime::*, trailing_zero::*,
-};
+use maths::{armstrong::*, factoring::*, gcd_lcd::*, palindrome::*, prime::*, trailing_zero::*};
 
 #[cfg(feature = "recursion")]
 mod recursion;
 
 #[cfg(feature = "recursion")]
-use recursion::{array::*, factorial::*, n::*, sum::*};
+use recursion::{array::*, factorial::*, n::*, string::*, sum::*};
 
 use std::env;
 
 fn main() {
     let args: Vec<_> = env::args().collect();
-    let input = args.get(1).unwrap();
-    let input: u32 = input.parse().unwrap();
+    let input = args.get(1).cloned().unwrap_or_default();
+    let input: u32 = input.parse().unwrap_or(0);
     let _b = args
         .get(2)
         .unwrap_or(&String::from("0"))
@@ -34,10 +32,14 @@ fn main() {
         .unwrap_or(0);
     let n = input;
 
+    // let r = palindrome("ABCDCBA");
+    // println!("{}", r);
+    
+    
     // print_all_primes::naive(n);
     // print_all_primes::sieve_of_eratosthenes(n);
-    print_all_primes::sieve_of_eratosthenes_better(n);
-    
+    // print_all_primes::sieve_of_eratosthenes_better(n);
+
     // is_prime(input);
     // is_prime::answer_better(input);
     // is_prime::answer_super(input);
