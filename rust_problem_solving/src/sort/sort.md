@@ -1,3 +1,10 @@
 
-[Time, Space] - [ O(n^2)/O(n) , O(1) ] Sorting Algos:
-Insertion > Bubble > Selection ()
+[Time, Space] 
+
+O(n^2)/O(n) , O(1):
+    Insertion > Bubble > Selection ()
+
+O(nlogN), O(n):
+    QuickSort> MergeSort 
+
+

@@ -36,11 +36,21 @@
 // - 4.Copy the left-out elements in both halves into temp Array
 // - 5.Copy elements of temp array in range(low,high) to Original Array
 
+ /* ----------------------------- Complexity ---------------------------- */
+//  T(n) = 2*T(n/2) + Cn 
+//  T(1) = C
+//  >> T(n) = Cn * logN 
+//  
+// Time: theta(n*logN)
+// Space: theta(n)              (size of temp array is n)
+/* ------------------------------------ X ----------------------------------- */
+
 pub fn call_sort(arr: &mut [u32]) {
     let high = u32::try_from(arr.len()).unwrap();
     let high = high - 1;
     sort(arr, 0, high);
 }
+
 
 pub fn sort(arr: &mut [u32], low: u32, high: u32) {
     if low >= high {
@@ -59,6 +69,7 @@ pub fn sort(arr: &mut [u32], low: u32, high: u32) {
     merge(arr, low, mid, high);
 }
 
+// This function is used to merge the 2 halves of the array.
 pub fn merge(arr: &mut [u32], low: u32, mid: u32, high: u32) {
     // 1.
     let len = usize::try_from(high - low + 1).unwrap();
@@ -100,7 +111,7 @@ pub fn merge(arr: &mut [u32], low: u32, mid: u32, high: u32) {
 }
 
 #[cfg(test)]
-mod test_selection_sort {
+mod test_merge_sort {
     use super::*;
 
     #[test]

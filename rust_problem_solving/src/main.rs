@@ -39,6 +39,7 @@ fn main() {
         .unwrap_or(0);
     let n = input;
 
+
     // let r = palindrome("ABCDCBA");
     // println!("{}", r);
 
