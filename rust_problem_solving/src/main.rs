@@ -19,8 +19,7 @@ use recursion::{array::*, factorial::*, n::*, string::*, sum::*};
 
 #[cfg(feature = "list")]
 mod list;
-// #[cfg(feature = "list")]
-// use list::{}
+
 
 #[cfg(feature = "sort")]
 mod sort;
