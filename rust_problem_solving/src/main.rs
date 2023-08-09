@@ -20,15 +20,18 @@ use recursion::{array::*, factorial::*, n::*, string::*, sum::*};
 #[cfg(feature = "list")]
 mod list;
 
-
 #[cfg(feature = "sort")]
 mod sort;
+#[cfg(feature = "sort")]
 use sort::{
     bubble::*,
     insertion::*,
     quick::{qs_v1::quick_sort, *},
     selection::*,
 };
+
+#[cfg(feature = "array")]
+mod array;
 
 use std::env;
 
@@ -44,7 +47,7 @@ fn main() {
     let n = input;
 
     let mut arr = [11, 3, 9, 7, 5, 2, 4];
-    qs_v2::quick_sort(&mut arr);
+    // qs_v2::quick_sort(&mut arr);
 
     // let r = palindrome("ABCDCBA");
     // println!("{}", r);

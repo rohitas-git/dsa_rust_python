@@ -4,5 +4,5 @@
 pub mod bubble;
 pub mod insertion;
 pub mod merge_sort;
-pub mod selection;
 pub mod quick;
+pub mod selection;

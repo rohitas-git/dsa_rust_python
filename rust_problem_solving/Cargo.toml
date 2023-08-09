@@ -6,11 +6,19 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# num = "0.4.1"
+funty = "2.0.0"
+
 
 [features]
-default = ["sort"]
+default = ["array"]
 patterns =[]
 maths =[]
 recursion=[]
 list=[]
 sort=[]
+array=["easy"]
+
+easy=[]
+medium=[]
+hard=[]

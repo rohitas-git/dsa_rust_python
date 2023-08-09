@@ -3,7 +3,7 @@
 def main():
     l = [x for x in range(1,20)]
     
-    smaller = getElementsSmallerThan(10, l)  
+    smaller = getElementsSmallerThanV2(10, l)  
     print(smaller)
 
 
@@ -16,9 +16,13 @@ def getElementsSmallerThan(s, l):
     for x in l :
         if x < s:
             smaller.append(x)
-    
-    # print(f"Odd: {odd}")
-    # print(f"Even: {even}")
+
     return smaller
 
+def getElementsSmallerThanV2(s, l):
+    smaller = [x for x in l if x < s]
+    
+    return smaller
+    
+    
 main()
