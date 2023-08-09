@@ -4,7 +4,7 @@
 // Approaches:
 // 1. Brute: Sort the array. 1 and N-2 item of array is the answer [T:O(NlogN) for sorting, S:O(1)]
 // 2. Better: Find the smallest and largest element in the array in a single traversal. Then find the second largest and smallest. [t:O(n), s:O(1)]
-// 3. Optimal:
+
 
 use funty::Integral;
 
@@ -68,7 +68,6 @@ mod test_problem2 {
 
         assert_eq!(a,(40,0));
     }
-
 
     #[test]
     fn second_largest_ok() {

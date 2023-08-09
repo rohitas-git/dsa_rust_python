@@ -2,7 +2,7 @@
 
 # arr = [10,20,20,30,30,30] -> arr = [10,20,30]
 # not working for [10,20,30, 30,_20, _10, _30]
-def removeDuplicates(l,n):
+def removeDuplicates(arr,n):
     
     res = 1
     for i in range(1,n):
@@ -10,7 +10,6 @@ def removeDuplicates(l,n):
             arr[res]=arr[i]
             res+=1
     return res
-
 
 
 
