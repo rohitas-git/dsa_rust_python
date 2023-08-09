@@ -1,23 +1,30 @@
-#![allow(unused_imports)]
 #![allow(unused)]
 
 #[cfg(feature = "patterns")]
 mod patterns;
-
 #[cfg(feature = "patterns")]
 use patterns::{alphabet::*, ladder::*, square::*, triangle::*};
 
 #[cfg(feature = "maths")]
 mod maths;
-
 #[cfg(feature = "maths")]
-use maths::{armstrong::*, factoring::*, gcd_lcd::*, palindrome::*, prime::*, trailing_zero::*};
+use maths::{
+    armstrong::*, factoring::*, gcd_lcd::*, modulo::*, palindrome::*, prime::*, trailing_zero::*,
+};
 
 #[cfg(feature = "recursion")]
 mod recursion;
-
 #[cfg(feature = "recursion")]
 use recursion::{array::*, factorial::*, n::*, string::*, sum::*};
+
+#[cfg(feature = "list")]
+mod list;
+// #[cfg(feature = "list")]
+// use list::{}
+
+#[cfg(feature = "sort")]
+mod sort;
+use sort::{bubble::*, insertion::*, selection::*};
 
 use std::env;
 
@@ -32,10 +39,10 @@ fn main() {
         .unwrap_or(0);
     let n = input;
 
+
     // let r = palindrome("ABCDCBA");
     // println!("{}", r);
-    
-    
+
     // print_all_primes::naive(n);
     // print_all_primes::sieve_of_eratosthenes(n);
     // print_all_primes::sieve_of_eratosthenes_better(n);
@@ -80,6 +87,7 @@ fn main() {
     // println!("{}", res);
 
     // lcm::naive(input, _b);
+    // lcm::efficient(input, _b)
 
     // is_palindromev1(input);
     // is_palindromev2(input);

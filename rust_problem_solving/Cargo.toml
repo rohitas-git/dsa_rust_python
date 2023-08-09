@@ -8,7 +8,9 @@ edition = "2021"
 [dependencies]
 
 [features]
-default = ["recursion"]
+default = ["sort"]
 patterns =[]
 maths =[]
 recursion=[]
+list=[]
+sort=[]
