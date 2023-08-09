@@ -24,7 +24,12 @@ mod list;
 
 #[cfg(feature = "sort")]
 mod sort;
-use sort::{bubble::*, insertion::*, selection::*};
+use sort::{
+    bubble::*,
+    insertion::*,
+    quick::{qs_v1::quick_sort, *},
+    selection::*,
+};
 
 use std::env;
 
@@ -39,6 +44,8 @@ fn main() {
         .unwrap_or(0);
     let n = input;
 
+    let mut arr = [11, 3, 9, 7, 5, 2, 4];
+    qs_v2::quick_sort(&mut arr);
 
     // let r = palindrome("ABCDCBA");
     // println!("{}", r);

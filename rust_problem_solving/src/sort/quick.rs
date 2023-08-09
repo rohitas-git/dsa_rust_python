@@ -66,20 +66,27 @@ pub mod qs_v2 {
     // Finally, we will swap the pivot element(i.e. arr[low]) with arr[j] and will return the index j i.e. the partition index.
     fn parition(arr: &mut [u8], low: usize, high: usize) -> usize {
         let mut pivot = low;
+        let mut pivot_val = arr[pivot];
         let mut smaller = low;
         let mut larger = high;
 
+        println!("S:{}, L:{}", smaller, larger);
+        println!("{:?}", arr);
         while smaller < larger {
-            while arr[smaller] < arr[pivot] && smaller <= high - 1 {
+            println!("Before:: S:{}, L:{}", smaller, larger);
+            
+            while arr[smaller] < pivot_val && smaller <= high - 1 {
                 smaller += 1;
             }
-            while arr[larger] > arr[pivot] && larger >= low + 1 {
+            while arr[larger] > pivot_val && larger >= low + 1 {
                 larger -= 1;
             }
-
+            
             if smaller < larger {
                 (arr[larger], arr[smaller]) = (arr[smaller], arr[larger]);
             }
+            println!("After:: S:{}, L:{}", smaller, larger);
+            println!("After {:?}", arr);
         }
         (arr[pivot], arr[larger]) = (arr[larger], arr[pivot]);
 
