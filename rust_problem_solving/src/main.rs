@@ -15,7 +15,7 @@ use maths::{
 #[cfg(feature = "recursion")]
 mod recursion;
 #[cfg(feature = "recursion")]
-use recursion::{array::*, factorial::*, n::*, string::*, sum::*};
+use recursion::{array::*, factorial::*, fibonacci::*, n::*, string::*, sum::*};
 
 #[cfg(feature = "list")]
 mod list;
