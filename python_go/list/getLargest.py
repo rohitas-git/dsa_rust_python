@@ -27,7 +27,19 @@ def getSecondLargest(l):
     return slar
 
 
-#theta(N) but more efficient as it does only 1 traversal of list 
+
+# Approach: Find the second largest element in a single traversal. 
+# Below is the complete algorithm for doing this:  
+# 1) Initialize the first as 0(i.e, index of arr[0] element
+# 2) Start traversing the array from array[1],
+#    a) If the current element in array say arr[i] is greater
+#       than first. Then update first and second as,
+#       second = first
+#       first = arr[i]
+#    b) If the current element is in between first and second,
+#       then update second to store the value of current variable as
+#       second = arr[i]
+# 3) Return the value stored in second.
 def efficientSecLargest(l):
     if len(l) <= 1:
         return None

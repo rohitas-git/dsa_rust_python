@@ -1,10 +1,16 @@
-# Slicing (List, tuple, string )
 
-#   List[start: stop: step]
-#   Tuple[start: stop: step]
-#   String[start: stop: step]
-#
-#  stop is not included
+#! Slicing in Python 
+# is a feature that enables accessing parts of the sequence. 
+# In slicing a string, we create a substring, which is essentially a string 
+# that exists within another string. 
+# We use slicing when we require a part of the string and not the complete string. 
+
+# Syntax :
+
+# string[start : end : step]
+# start : We provide the starting index.
+# end : We provide the end index(this is not included in substring).
+# step : It is an optional argument that determines the increment between each index for slicing.
 
 def main():
     # listSlicing()
