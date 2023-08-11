@@ -4,6 +4,7 @@ def main():
     n = int(argv[1])
     reverse_bits(n)
     print(reverseBits(n))
+    # print(int_to_binary(11))
 
 
 

@@ -1,7 +1,7 @@
 
 def main():
     l = [10,20,30,40]
-    rotateByLoop(l)
+    rotateByIteration(l)
     rotateBySlicing(l)
     rotateByPopAppend(l)
 
@@ -17,7 +17,7 @@ def rotateByPopAppend(l):
     print(l)
     
     
-def rotateByLoop(l):
+def rotateByIteration(l):
     print("Before",l)
     n = len(l)
     x = l[0]
