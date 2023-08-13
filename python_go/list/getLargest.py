@@ -57,7 +57,7 @@ def efficientSecLargest(l):
     
     return slar 
             
-      
+    
 l = [ 12,1,23,14,99,56]
 print(getLargest(l))
 print(efficientSecLargest(l))
