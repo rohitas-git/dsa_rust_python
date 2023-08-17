@@ -20,7 +20,7 @@ use recursion::{array::*, factorial::*, fibonacci::*, n::*, string::*, sum::*};
 #[cfg(feature = "list")]
 mod list;
 
-#[cfg(feature = "sort")]
+#[cfg(any(feature = "sort", feature = "mergeSort"))]
 mod sort;
 #[cfg(feature = "sort")]
 use sort::{
@@ -29,6 +29,9 @@ use sort::{
     quick::{qs_v1::quick_sort, *},
     selection::*,
 };
+
+#[cfg(any(feature = "sort", feature = "mergeSort"))]
+use crate::sort::merge_sort;
 
 #[cfg(feature = "array")]
 mod array;

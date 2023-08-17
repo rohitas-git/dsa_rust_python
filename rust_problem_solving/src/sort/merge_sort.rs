@@ -47,7 +47,7 @@
 /* ------------------------------------ X ----------------------------------- */
 //  V1 slightly better than V2
 
-pub fn call_sort(arr: &mut [u32]) {
+pub fn do_sort(arr: &mut [u32]) {
     let high = u32::try_from(arr.len()).unwrap();
     sort(arr, 0, high - 1);
 }
@@ -122,7 +122,7 @@ mod test_merge_sort {
     fn sort_ok() {
         let mut arr2 = [1, 3, 5, 2, 4, 9, 6, 8, 7];
         // merge_sort(&mut arr2);
-        call_sort(&mut arr2);
+        do_sort(&mut arr2);
         assert_eq!(arr2, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     }
 }
