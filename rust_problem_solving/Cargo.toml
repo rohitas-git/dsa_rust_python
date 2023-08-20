@@ -17,10 +17,11 @@ maths =[]
 recursion=[]
 list=[]
 sort=[]
-array=["medium", "mergeSort", "dep:funty"]
-
+array=["medium", "mergeSort","other"]
+#dep:funty not required
 easy=[]
 medium=[]
 hard=[]
+other=[]
 
 mergeSort =[]

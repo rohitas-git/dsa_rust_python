@@ -37,15 +37,15 @@ fn brute(arr: &[i32]) {
     // return
 }
 
-fn better2(arr: &[i32]) -> {
-    let n = arr.len();
-    let mid = n/2;
+// fn better2(arr: &[i32]) -> u32{
+//     let n = arr.len();
+//     let mid = n/2;
 
-    let left = &arr[0..mid];
-    let right = &arr[mid..n];
+//     let left = &arr[0..mid];
+//     let right = &arr[mid..n];
 
-    let answ = better2(left) + better2(arr)
-}
+//     let answ = better2(left) + better2(arr);
+// }
 
 fn better(arr: &[i32]) {
     let n = arr.len();
