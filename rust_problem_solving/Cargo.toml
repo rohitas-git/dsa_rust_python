@@ -11,7 +11,7 @@ funty = {version = "2.0.0", optional = true}
 
 
 [features]
-default = ["array"]
+default = ["array", "sort"]
 patterns =[]
 maths =[]
 recursion=[]

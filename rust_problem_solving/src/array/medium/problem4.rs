@@ -24,7 +24,7 @@ fn brute(arr: &[i32]) {
     for i in 0..n {
         let mut sum = 0;
         for j in i..n {
-            sum += arr[j];   
+            sum += arr[j];
             if sum > prev {
                 prev = sum;
                 id = (i, j);
@@ -53,20 +53,17 @@ fn better(arr: &[i32]) {
     let mut left = 0;
     let mut right = n - 1;
     let mut total = 0;
-    
-    for i in 0..n{
-        total+=arr[i];
+
+    for i in 0..n {
+        total += arr[i];
     }
 
     let mut left_sum = 0;
     let mut right_sum = 0;
 
-    while left <=right {
-        left_sum+=arr[left];
-        right_sum+=arr[right];
-
-
-
+    while left <= right {
+        left_sum += arr[left];
+        right_sum += arr[right];
     }
 
     while right < n {}

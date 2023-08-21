@@ -1,6 +1,7 @@
 # It will be used as sub-routine of quickSort algo
 
-# time - theta(N), space - theta(N)
+# time - theta(3*N), space - theta(N)
+# Stable Algorithm
 def naiveSolution(arr, index):
     n = len(arr)
     arr[index],arr[n-1] = arr[n-1], arr[index]

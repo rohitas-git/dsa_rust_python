@@ -26,8 +26,9 @@ mod sort;
 use sort::{
     bubble::*,
     insertion::*,
-    quick::{qs_v1::quick_sort, *},
+    quick_sort::{qs_v1::quick_sort, *},
     selection::*,
+    *,
 };
 
 #[cfg(any(feature = "sort", feature = "mergeSort"))]

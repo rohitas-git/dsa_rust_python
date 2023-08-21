@@ -31,7 +31,7 @@ def hoareParition(arr,l,h):
         while arr[j] > pivot:
             j-=1
         if i>=j:
-            return j # pivot will not at j but somewhere in [j+1:h]
+            return j    # pivot will not at j but somewhere in [j+1:h]
         arr[j],arr[i] = arr[i], arr[j]
         i+=1
         j-=1
