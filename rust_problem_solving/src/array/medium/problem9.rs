@@ -74,7 +74,7 @@ fn better(arr: &mut [u32]) -> u32 {
 }
 
 #[cfg(test)]
-mod find_longest_successive_elements {
+mod test_find_longest_successive_elements {
     use super::*;
 
     #[test]
