@@ -10,7 +10,7 @@
 /* -------------------------------- Approach -------------------------------- */
 // naive: time O(n^2), space O(1)
 //
-// Optimal for + - Sum : using hashMap
+// Optimal for + - Sum : using hashMap for PrefixSum approach
 // Using hashMap to store prefix Sums <X,id>,
 // find if prefixSum such that currPrefix - K is present in Map
 
@@ -113,8 +113,11 @@ fn optimal_for_sum_positive(arr: &[i32], k: i32) -> usize {
             sum += arr[right];
         }
     }
-
-    max_len
+    if sum == k {
+        max_len
+    } else {
+        0
+    }
 }
 
 #[cfg(test)]

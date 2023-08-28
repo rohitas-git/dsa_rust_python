@@ -21,3 +21,15 @@ class MyHash:
     def search(self,x):
         i = x % self.BUCKET
         return x in self.table[i]
+    
+    
+h = MyHash(7)
+h.insert(70)
+h.insert(71)
+h.insert(9)
+h.insert(56)
+h.insert(72)
+print(h.search(56))
+h.remove(56)
+print(h.search(56))
+h.remove(56)

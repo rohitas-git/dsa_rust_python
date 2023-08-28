@@ -16,6 +16,7 @@ fn traverse_spirally(matrix: &Vec<Vec<u32>>) {
     let mut right = (top.0, top.1 + n - 1);
     let mut left = (top.0 + n - 1, top.1);
     let mut bottom = (top.0 + n - 1, top.1 + n - 1);
+    
     while top.0 <= bottom.0 && top.1 <= bottom.1 {
         // 1. top -> right
         print!("|");

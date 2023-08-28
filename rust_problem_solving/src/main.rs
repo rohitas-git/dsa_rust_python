@@ -37,6 +37,9 @@ use crate::sort::merge_sort;
 #[cfg(feature = "array")]
 mod array;
 
+#[cfg(feature = "binarySearch")]
+mod binary_search;
+
 use std::env;
 
 fn main() {
