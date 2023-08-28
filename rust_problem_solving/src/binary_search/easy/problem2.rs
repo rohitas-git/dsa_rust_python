@@ -8,6 +8,8 @@
 
 // find i such that arr[i] > x and arr[i] is the largest among the answers
 
+/* ------------------------------------ x ----------------------------------- */
+
 // assuming sorted in ascending order
 fn find_upper_bound(arr: &[u32], target: u32) -> Option<usize> {
     let mut answer = None;
