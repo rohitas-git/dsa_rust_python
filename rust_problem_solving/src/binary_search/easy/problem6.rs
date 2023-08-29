@@ -6,7 +6,11 @@
 /* ------------------------------------ x ----------------------------------- */
 
 // Approach:
-// Have variable to store last occurence of target value and do normal binary search for it
+// Find the first occurence of target
+// If not present, then return None; else find last occurence
+// total number of occcurrences = last - first + 1
+
+/* ------------------------------------ x ----------------------------------- */
 
 fn count_occurrences(arr: &[u32], target: u32) -> Option<usize> {
     let n = arr.len();
