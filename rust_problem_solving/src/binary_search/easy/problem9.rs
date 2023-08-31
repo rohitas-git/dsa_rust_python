@@ -46,6 +46,7 @@ fn optimal_solution(arr: &[u32]) -> u32 {
         let mid = low + (high - low) / 2;
         let current = arr[mid];
         min = minimum(min, current);
+        
         if current >= arr[high] {
             if mid != (n - 1){
                 low = mid + 1;

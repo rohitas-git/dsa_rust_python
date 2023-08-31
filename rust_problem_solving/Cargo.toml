@@ -19,7 +19,7 @@ recursion=[]
 list=[]
 sort=[]
 array=["medium", "mergeSort","other", ]
-binarySearch = ["easy"]
+binarySearch = ["easy","medium"]
 
 #dep:funty not required
 # "dep:num"
