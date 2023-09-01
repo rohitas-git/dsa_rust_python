@@ -1,48 +1,54 @@
 /* ---------------- Nth Root of a Number using Binary Search ---------------- */
-// Problem Statement: Given two numbers N and M, find the Nth root of M. 
-// The nth root of a number M is defined as a number X when raised to the power N equals M. 
+// Problem Statement: Given two numbers N and M, find the Nth root of M.
+// The nth root of a number M is defined as a number X when raised to the power N equals M.
 // If the ‘nth root is not an integer, return -1.
 
 /* ------------------------------------ x ----------------------------------- */
-enum Status{
+enum Status {
     Larger,
     Equal,
-    Smaller
+    Smaller,
 }
 use Status::*;
 
 // Time - O(logM * N)
-fn optimal_with_bs(target:u32, n: u32) -> Option<u32>{
-    let mut low =1;
+fn optimal_with_bs(target: u32, n: u32) -> Option<u32> {
+    let mut low = 1;
     let mut high = target;
 
-    if target == 0{
+    if target == 0 {
         return None;
     }
 
     while low <= high {
-        let mid = low + (high-low)/2;
-        
+        let mid = low + (high - low) / 2;
+
         match position_of_powered(mid, n, target) {
-            Equal =>  {return Some(mid);},
-            Smaller => {low = mid+1;},
-            Larger => {high = mid-1;}
+            Equal => {
+                return Some(mid);
+            }
+            Smaller => {
+                low = mid + 1;
+            }
+            Larger => {
+                high = mid - 1;
+            }
         }
     }
     None
 }
 
 // Time - O(N)
-fn position_of_powered(mid:u32, n:u32, target:u32) -> Status{
-    let mut val=1;
+fn position_of_powered(mid: u32, n: u32, target: u32) -> Status {
+    let mut val = 1;
 
-    for i in 1..(n+1){
+    for i in 1..(n + 1) {
         val *= mid;
-        if val > target{
+        if val > target {
             return Larger;
         }
     }
-    if val == target{
+    if val == target {
         return Equal;
     }
     Smaller
@@ -56,16 +62,15 @@ mod test_nth_root {
 
     #[test]
     fn optimal_with_bs_ok() {
-        
         let res = optimal_with_bs(1024, 10);
         assert_eq!(res, Some(2));
 
-        let res = optimal_with_bs(25*25, 4);
+        let res = optimal_with_bs(25 * 25, 4);
         assert_eq!(res, Some(5));
 
         let res = optimal_with_bs(8, 3);
         assert_eq!(res, Some(2));
-    
+
         let res = optimal_with_bs(125, 4);
         assert_eq!(res, None);
 
@@ -73,4 +78,3 @@ mod test_nth_root {
         assert_eq!(res, None);
     }
 }
-
