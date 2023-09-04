@@ -80,7 +80,5 @@ mod test_find_least_weight_capacity {
     fn test_solution() {
         let weights = [5,4,5,2,3,4,5,6];
         let res = least_weight_capacity(&weights, 5);
-
-
     }
 }
