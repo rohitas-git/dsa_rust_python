@@ -40,8 +40,10 @@ mod array;
 #[cfg(feature = "binarySearch")]
 mod binary_search;
 
-use std::env;
+#[cfg(feature="hashing")]
+mod hashing;
 
+use std::env;
 fn main() {
     let args: Vec<_> = env::args().collect();
     let input = args.get(1).cloned().unwrap_or_default();
@@ -53,7 +55,8 @@ fn main() {
         .unwrap_or(0);
     let n = input;
 
-    let mut arr = [11, 3, 9, 7, 5, 2, 4];
+
+
     // qs_v2::quick_sort(&mut arr);
 
     // let r = palindrome("ABCDCBA");
