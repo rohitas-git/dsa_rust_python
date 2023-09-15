@@ -2,5 +2,8 @@
     "rust-analyzer.linkedProjects": [
         "./rust_problem_solving/Cargo.toml"
     ],
-    "rust-analyzer.showUnlinkedFileNotification": false
+    "rust-analyzer.showUnlinkedFileNotification": false,
+    "java.project.sourcePaths": [
+        "DesignPatterns/Essentials/encapsulation/java/com.rohitas.java"
+    ]
 }
