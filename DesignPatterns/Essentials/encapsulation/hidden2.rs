@@ -9,8 +9,8 @@ fn main() {
     
     println!("The open box contains: {}", open_box.contents);
 
-    let _closed_box = ClosedBox::new("classified information");
+    let mut _closed_box = ClosedBox::new("classified information");
 
-    ClosedBox::print_content(&_closed_box);
-    _closed_box.print_content();
+    _closed_box.set_content("secret information");
+    println!("The close box contains: {:?}", _closed_box.get_content());
 }

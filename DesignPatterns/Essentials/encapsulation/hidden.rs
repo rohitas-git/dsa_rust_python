@@ -24,17 +24,18 @@ pub struct ClosedBox<T> {
     contents: T,
 }
 
-impl<T: std::fmt::Debug> ClosedBox<T> {
+impl<T: std::fmt::Debug + Clone> ClosedBox<T> {
     pub fn new(contents: T) -> ClosedBox<T> {
         ClosedBox { contents: contents }
     }
 
+    // getter
     pub fn get_content(&self) -> T{
         self.contents.clone()
     }
 
-    pub fn print_content(&self) {
-        println!("The close box contains: {:?}", self.contents);
+    pub fn set_content(&mut self, content: T){
+        self.contents = content
     }
 }
 

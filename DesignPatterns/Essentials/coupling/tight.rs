@@ -6,6 +6,8 @@
 // Tight coupling is because there are no traits (interfaces) used to connect components
 
 /* ------------------------------------ x ----------------------------------- */
+// OpenBox<T> is tightly coupled with ClosedBox<T>
+
 use std::fmt::Debug;
 
 // A public struct with a private field of generic type `T`

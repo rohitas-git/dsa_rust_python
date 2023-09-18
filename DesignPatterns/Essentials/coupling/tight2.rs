@@ -8,8 +8,9 @@ pub struct OpenBox<T> {
     pub contents: T,
 }
 
+// OpenBox<T> is tightly coupled with ClosedBox<T>
 impl<T: Debug + Clone> OpenBox<T> {
-    // method
+
     fn tight_couple(&self, noun: &str) {
         let my_box = ClosedBox::new(noun);
         let content = my_box.get_content();
