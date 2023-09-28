@@ -53,12 +53,12 @@
 # Solution 1: 
 # ! Quadratic Probing
 # Quadratic probing is a method with the help of which we can solve the problem of clustering
-# This method is also known as the mid-square method. 
-# In this method, we look for the i2‘th slot in the ith iteration. 
+# * This method is also known as the mid-square method. 
+# In this method, we look for the (i^2)‘th slot in the ith iteration. 
 # We always start from the original hash location. 
 # If only the location is occupied then we check the other slots.
 
-# hash(key,i) = (h(key) + i*i) mod m; => Results in Secondary Clusters
+# * hash(key,i) = (h(key) + i*i) mod m; => Results in Secondary Clusters
 
 # Better than Linear Probing
 # But in quadractic probing, it's not guaranteed that empty slots can be found even if they are present

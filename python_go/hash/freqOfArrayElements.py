@@ -1,5 +1,6 @@
 # ----------------------- Frequencies of Array Elements ---------------------- #
-# Given an array which may contain duplicates, print all elements and their frequencies.
+# Given an array which may contain duplicates, 
+# print all elements and their frequencies.
 
 
 def countFreqOptimalV2(arr, n):

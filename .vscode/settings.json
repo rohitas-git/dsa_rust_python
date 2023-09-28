@@ -1,9 +1,11 @@
 {
-    "rust-analyzer.linkedProjects": [
-        "./rust_problem_solving/Cargo.toml"
-    ],
-    "rust-analyzer.showUnlinkedFileNotification": false,
-    "java.project.sourcePaths": [
-        "DesignPatterns/Essentials/encapsulation/java/com.rohitas.java"
-    ]
+	"rust-analyzer.linkedProjects": ["./rust_problem_solving/Cargo.toml"],
+	"rust-analyzer.showUnlinkedFileNotification": false,
+	"java.project.sourcePaths": [
+		"DesignPatterns/Essentials/encapsulation/java/com.rohitas.java"
+	],
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.autopep8"
+	},
+	"python.formatting.provider": "none"
 }

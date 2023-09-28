@@ -1,6 +1,7 @@
 # ---------------------------- Collision Handling: --------------------------- #
 # Since a hash function gets us a small number for a big key, 
 # there is possibility that two keys result in same value. 
+# 
 # The situation where a newly inserted key maps to an already occupied slot 
 # in hash table is called collision and must be handled using some collision handling technique.
 
