@@ -24,3 +24,9 @@ print("A:\t",ord('A'))
 print("97:\t",chr(97))
 print("65:\t",chr(65))
 
+print(ord('@'))
+print(ord('#'))
+print(ord('$'))
+print(ord('-'))
+print(ord('*'))
+
