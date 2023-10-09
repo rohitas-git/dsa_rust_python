@@ -48,7 +48,6 @@ def nth(head, n):
     
 
 
-
 def createList(arr):
     head, last = None, None    
     for item in arr:
