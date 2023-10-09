@@ -27,6 +27,7 @@ def main():
     
 
 # time - theta(N) [one traversal], space - O(1) 
+# two pointer approach
 def efficientMiddle(head):
     if head == None:
         print(head)
@@ -43,6 +44,7 @@ def efficientMiddle(head):
 
 
 # time - theta(N) [one traversal], space - theta(N)
+# while traversing list, track values of node and find length of list
 def middle(head):
     if head == None:
         return 

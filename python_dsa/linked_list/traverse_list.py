@@ -17,8 +17,8 @@ def main():
 def printList(head):
     traveller = head 
     while traveller != None:    
-        print(traveller.key)
+        print(traveller.key, end=" ")
         traveller = traveller.next 
-        
+    print()    
 
 main()
