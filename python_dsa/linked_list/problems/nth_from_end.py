@@ -80,7 +80,6 @@ def printNthFromEnd_naive(head, n):
     
 
 
-
 def createList(arr):
     head, last = None, None    
     for item in arr:
