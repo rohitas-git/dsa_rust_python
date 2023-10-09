@@ -6,6 +6,7 @@ class Node:
         # reference to connected node
         self.next = None 
 
+
 # You are given a circular linked list of size N. 
 # You need to insert an element data just after the given position pos.
 # The position of first element is 1. If the given position is greater than N, 
