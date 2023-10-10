@@ -43,6 +43,9 @@ mod binary_search;
 #[cfg(feature="hashing")]
 mod hashing;
 
+#[cfg(feature="linkedList")]
+mod linked_list;
+
 use std::env;
 fn main() {
     let args: Vec<_> = env::args().collect();
