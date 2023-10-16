@@ -19,6 +19,7 @@ def main():
     # inorder(root)
     inorderSimpler(root)
     inorderFancier(root, "ROOT", 0)
+    
 
 
 # Essence of Inorder way of Depth first traversal
@@ -98,4 +99,4 @@ def inorder_v2(root):
         return result
 
 
-main()
+# main()
