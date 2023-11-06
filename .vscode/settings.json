@@ -8,5 +8,7 @@
 		"editor.defaultFormatter": "ms-python.autopep8"
 	},
 	"python.formatting.provider": "none",
-	"python.analysis.typeCheckingMode": "off"
+	"python.analysis.typeCheckingMode": "off",
+	"python.linting.pylintEnabled": true,
+	"python.linting.enabled": true
 }

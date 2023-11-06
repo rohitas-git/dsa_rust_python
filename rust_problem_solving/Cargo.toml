@@ -13,7 +13,7 @@ num = {version="0.4.0", optional = true}
 
 [features]
 # default = ["binarySearch", "hashing", "linkedList"]
-default = ["linkedList"]
+default = ["linkedList", "tree"]
 patterns =[]
 maths =[]
 recursion=[]
@@ -23,6 +23,7 @@ array=["medium", "mergeSort","other", ]
 binarySearch = ["easy","medium"]
 hashing=[]
 linkedList = []
+tree=[]
 
 #dep:funty not required
 # "dep:num"
