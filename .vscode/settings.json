@@ -9,6 +9,7 @@
 	},
 	"python.formatting.provider": "none",
 	"python.analysis.typeCheckingMode": "off",
-	"python.linting.pylintEnabled": true,
-	"python.linting.enabled": true
+	"python.linting.pylintEnabled": false,
+	"python.linting.enabled": false,
+	"python.linting.pylamaEnabled": true
 }
