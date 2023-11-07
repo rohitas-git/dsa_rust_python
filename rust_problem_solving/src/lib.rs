@@ -46,3 +46,9 @@ mod hashing;
 
 #[cfg(feature = "linkedList")]
 mod linked_list;
+
+
+#[cfg(feature = "stack")]
+mod stack;
+#[cfg(feature = "queue")]
+mod queue;
