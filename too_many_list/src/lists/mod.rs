@@ -6,4 +6,5 @@
 // .TODO: An Ok Unsafe Doubly-Linked Deque
 // Bonus: A Bunch of Silly Lists
 
-pub mod bad_stack;
+pub mod bad_stack_singly_linked_list;
+
