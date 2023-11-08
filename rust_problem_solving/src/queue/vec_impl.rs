@@ -33,7 +33,7 @@ where
         }
     }
 
-    fn push_rear(&mut self, data: T) -> Result<(), QueueError> {
+    fn push_right(&mut self, data: T) -> Result<(), QueueError> {
         if self.len() < QUEUEMAX {
             self.queue.push(data);
 
@@ -55,15 +55,21 @@ where
         }
     }
 
-    fn pop_front(&mut self) -> Result<(), QueueError> {
+    fn pop_left(&mut self) -> Result<(), QueueError> {
         if self.len() > 0 {
             let p = self.queue.get(self.front.unwrap()).unwrap();
+            println!("Item popped from queue: {:?}", p);
 
             if let Some(front) = self.front {
-                self.front = Some(front + 1);
+                if front == self.rear.unwrap() {
+                    self.queue = Vec::<T>::with_capacity(QUEUEMAX);
+                    self.rear = None;
+                    self.front = None;
+                } else {
+                    self.front = Some(front + 1);
+                }
             }
 
-            println!("Item popped from queue: {:?}", p);
             Ok(())
         } else {
             Err(QueueError::Underflow(
@@ -72,7 +78,7 @@ where
         }
     }
 
-    fn top(&self) -> Result<(), QueueError> {
+    fn peek(&self) -> Result<(), QueueError> {
         if self.len() > 0 {
             println!(
                 "Top of queue: {:?}",
@@ -108,8 +114,7 @@ impl<T: Display + Debug> Display for Queue<T> {
                 write!(f, "{} <- ", item)?;
             }
             Ok(())
-        }
-        else{
+        } else {
             Err(std::fmt::Error)
         }
     }
@@ -122,13 +127,13 @@ mod test_queue {
     #[test]
     fn test_queue_creation() -> Result<(), QueueError> {
         let mut my_queue = Queue::<u32>::new();
-        my_queue.push_rear(10)?;
-        my_queue.push_rear(20)?;
-        my_queue.push_rear(30)?;
-        my_queue.pop_front()?;
-        my_queue.push_rear(40)?;
-        my_queue.push_rear(50)?;
-        my_queue.pop_front()?;
+        my_queue.push_right(10)?;
+        my_queue.push_right(20)?;
+        my_queue.push_right(30)?;
+        my_queue.pop_left()?;
+        my_queue.push_right(40)?;
+        my_queue.push_right(50)?;
+        my_queue.pop_left()?;
 
         my_queue.display();
 

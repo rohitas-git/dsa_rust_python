@@ -1,0 +1,142 @@
+use std::fmt::{Debug, Display};
+
+/* -------------------------------- Approach -------------------------------- */
+
+// The intuition is to fill the array in a circular manner,
+// (ie) after popping from the front, rather than moving all the elements towards the front.
+// We can have 2 variables to keep track of the start and end indexes of the sequence.
+// Mod addition is done to handle boundary conditions.
+
+const QUEUEMAX: usize = 100;
+
+pub struct Queue<T>
+where
+    T: Display + Debug + Default + Copy,
+{
+    queue: [T; QUEUEMAX],
+    front: Option<usize>,
+    rear: Option<usize>,
+}
+
+#[derive(Debug)]
+pub enum QueueError {
+    Overflow(String),
+    Underflow(String),
+}
+
+impl<T> Queue<T>
+where
+    T: Display + Debug + Default + Copy,
+{
+    fn new() -> Self {
+        Queue {
+            queue: [T::default(); QUEUEMAX],
+            front: None,
+            rear: None,
+        }
+    }
+
+    fn push_right(&mut self, data: T) -> Result<(), QueueError> {
+        if self.len() < QUEUEMAX {
+            if let Some(rear) = self.rear {
+                self.rear = Some((rear + 1) % QUEUEMAX);
+            } else {
+                self.rear = Some(0);
+                self.front = Some(0);
+            }
+
+            self.queue[self.rear.unwrap()] = data;
+
+            Ok(())
+        } else {
+            Err(QueueError::Overflow(
+                "Overflow: Need to empty queue before push".to_string(),
+            ))
+        }
+    }
+
+    fn pop_left(&mut self) -> Result<(), QueueError> {
+        if self.len() > 0 {
+            let p = self.queue.get(self.front.unwrap()).unwrap();
+            println!("Item popped from queue: {:?}", p);
+
+            if let Some(front) = self.front {
+                if self.len() == 1 {
+                    self.queue = [T::default(); QUEUEMAX];
+                    self.rear = None;
+                    self.front = None;
+                } else {
+                    self.front = Some((front + 1) % QUEUEMAX);
+                }
+            }
+
+            Ok(())
+        } else {
+            Err(QueueError::Underflow(
+                "Underflow: Need to add items to queue before calling pop".to_string(),
+            ))
+        }
+    }
+
+    fn peek(&self) -> Result<(), QueueError> {
+        if self.len() > 0 {
+            println!(
+                "Top of queue: {:?}",
+                self.queue.get(self.front.unwrap()).unwrap()
+            );
+            Ok(())
+        } else {
+            Err(QueueError::Underflow(
+                "Underflow: Need to add items to queue before calling top".to_string(),
+            ))
+        }
+    }
+
+    fn len(&self) -> usize {
+        if self.front.is_some() && self.rear.is_some() {
+            self.rear.unwrap() - self.front.unwrap() + 1
+        } else {
+            0
+        }
+    }
+
+    fn display(&self) {
+        println!("{}", self);
+    }
+}
+
+impl<T: Display + Debug + Default + Copy> Display for Queue<T> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        if self.len() > 0 {
+            let front = self.front.unwrap();
+            let rear = self.rear.unwrap();
+            for item in self.queue[front..=rear].iter() {
+                write!(f, "{} <- ", item)?;
+            }
+            Ok(())
+        } else {
+            Err(std::fmt::Error)
+        }
+    }
+}
+
+#[cfg(test)]
+mod test_queue {
+    use super::*;
+
+    #[test]
+    fn test_queue_creation() -> Result<(), QueueError> {
+        let mut my_queue = Queue::<u32>::new();
+        my_queue.push_right(10)?;
+        my_queue.push_right(20)?;
+        my_queue.push_right(30)?;
+        my_queue.pop_left()?;
+        my_queue.push_right(40)?;
+        my_queue.push_right(50)?;
+        my_queue.pop_left()?;
+
+        my_queue.display();
+
+        Ok(())
+    }
+}
