@@ -6,5 +6,8 @@
 // .TODO: An Ok Unsafe Doubly-Linked Deque
 // Bonus: A Bunch of Silly Lists
 
-pub mod bad_stack_singly_linked_list;
+// minimum viable singly-linked stack.
+pub mod bad_singly_linked_stack;
 
+// less sucky minimum viable singly-linked stack.
+pub mod ok_singly_linked_stack;

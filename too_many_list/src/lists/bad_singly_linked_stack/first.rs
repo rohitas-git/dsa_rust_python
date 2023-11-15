@@ -19,6 +19,7 @@ impl List {
         List { head: Link::Empty }
     }
 
+    /// add node to start of list
     pub fn push(&mut self, elem: i32) {
         let new_node = Box::new(Node {
             elem,
@@ -28,6 +29,7 @@ impl List {
         self.head = Link::More(new_node);
     }
 
+    /// remove first node from list
     pub fn pop(&mut self) -> Option<i32> {
         match mem::replace(&mut self.head, Link::Empty) {
             Link::Empty => None,
@@ -38,6 +40,20 @@ impl List {
         }
     }
 }
+
+impl Drop for List {
+    fn drop(&mut self) {
+        let mut cur_link = mem::replace(&mut self.head, Link::Empty);
+        // `while let` == "do this thing until this pattern doesn't match"
+        while let Link::More(mut boxed_node) = cur_link {
+            cur_link = mem::replace(&mut boxed_node.next, Link::Empty);
+            // boxed_node goes out of scope and gets dropped here;
+            // but its Node's `next` field has been set to Link::Empty
+            // so no unbounded recursion occurs.
+        }
+    }
+}
+
 
 #[cfg(test)]
 mod test {

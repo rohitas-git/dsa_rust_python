@@ -11,7 +11,9 @@
 // Result: None
 
 /* -------------------------------- Approach: ------------------------------- */
-// 1. Better: Using hashmap
+// 1. Naive: Using two nested for loops 
+// 
+// 1. Better: Using hashmap to store previously visited elements
 //
 // 2. Optimal:
 // First sort the array and try to choose numbers in a greedy manner
@@ -20,11 +22,12 @@
 
 /* ------------------------------- Complexity ------------------------------- */
 // brute: time O(N^2)
-// better: time O(N) space O(N)
+// 
+// better: time O(N); space O(N)
 //
-// optimal:  [using mergeSort to sort in my solution]
-//  time O(N) + O(N logN)
-//  space O(N)
+// optimal: [using mergeSort to sort in my solution]
+//      time O(N) + O(N logN)
+//      space O(N)
 /* ------------------------------------ x ----------------------------------- */
 
 use std::collections::HashMap;
@@ -51,7 +54,7 @@ fn better(arr: &[i32], target: i32) -> Option<(usize, usize)> {
 
     for i in 0..n {
         let other: i32 = (target - arr[i]);
-        if store.get(&other) != None {
+        if store.get(&other).is_some() {
             let j = store.get(&other).unwrap().clone();
             return Some((i, j));
         }
