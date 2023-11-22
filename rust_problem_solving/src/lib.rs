@@ -15,6 +15,7 @@ use maths::{
 
 #[cfg(feature = "recursion")]
 mod recursion;
+
 #[cfg(feature = "recursion")]
 use recursion::{array::*, factorial::*, fibonacci::*, n::*, string::*, sum::*};
 
@@ -52,3 +53,9 @@ mod linked_list;
 mod stack;
 #[cfg(feature = "queue")]
 mod queue;
+
+#[cfg(feature = "dynamic_programming")]
+mod dynamic_programming;
+
+#[cfg(feature = "bit")]
+pub mod bit;

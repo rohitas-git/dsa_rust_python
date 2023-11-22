@@ -35,6 +35,18 @@
 //      step 2. Find the first different bit from right between the repeating and the missing number
 //      step 3. Based on the position of the different bits we will group all the elements into 2 different groups
 
+// Steps for XOR approach:
+// - For the first step, we will run a loop and calculate the XOR of all the array elements and the numbers between 1 to N. Let’s call this value xr.
+// - In order to find the position of the first set bit from the right,
+//   we can either use a loop or we can perform AND of the xr and negation of (xr-1) i.e. (xr & ~(xr-1)).
+// - Now, we will take two variables i.e. zero and one.
+//   Now, we will check the bit of that position for every element (array elements as well as numbers between 1 to N).
+//      - If the bit is 1: We will XOR that element with variable one.
+//      - If the bit is 0: We will XOR that element with variable zero.
+// - Finally, we have two variables i.e. two numbers zero and one. Among them, one is repeating and the other is missing. It’s time to identify them.
+//      - We will traverse the entire array and check how many times variable zero appears.
+//      - If it appears twice, it will be the repeating number, otherwise, it will be the missing. Now, based on variable zero’s identity, we can easily identify in which category, variable one belongs.
+
 /* ------------------------------- Complexity ------------------------------- */
 
 // Brute:
@@ -60,22 +72,51 @@ fn optimal_soln_v2(arr: &[u32]) -> (u32, u32) {
 
     let mut xr = 0;
 
-    // Step 1: Find XOR of all elements:
-    for i in 0..n {
-        xr ^= arr[i];
-        xr ^= i as u32 + 1;
+    // Step 1: Find XOR of all elements === X^Y:
+    for (arr_elem, natural_elem) in arr.iter().zip(1..=n) {
+        xr ^= arr_elem;
+        xr ^= natural_elem as u32;
     }
 
     // Step 2: Find the differentiating bit number:
-    let number = (xr & !(xr - 1));
+    let number = xr & !(xr - 1);
 
-    
+    // Step 3: Group all elements (arr and 1..=n)
+    let mut zero = 0; 
+    let mut one = 0;
+    for elem in arr {
+        // part of 1 group
+        if (*elem & number) != 0 {
+            one ^= *elem;
+        }
+        // part of 0 group
+        else {
+            zero ^= *elem;
+        }
+    }
+    for i in 1..=n {
+        // part of 1 group
+        if (i as u32 & number) != 0 {
+            one ^= i as u32;
+        }
+        // part of 0 group
+        else {
+            zero ^= i as u32;
+        }
+    }
 
-
-    let repeating = 0;
-    let missing = 0;
-
-    (repeating as u32, missing as u32)
+    // Last step: Identify the numbers
+    let mut count = 0;
+    for elem in arr {
+        if *elem == zero {
+            count += 1;
+        }
+    }
+    if count == 2 {
+        (zero, one)
+    } else {
+        (one, zero)
+    }
 }
 
 /// convert the given problem into mathematical equations.
@@ -184,6 +225,18 @@ fn brute_soln(arr: &[u32]) -> (u32, u32) {
 #[cfg(test)]
 mod test_prob4 {
     use super::*;
+
+
+    #[test]
+    fn optimal_v2() {
+        let arr = [3, 1, 2, 5, 3];
+        let sol = (3, 4);
+        assert_eq!(optimal_soln_v2(&arr), sol);
+
+        let arr = [3, 1, 2, 5, 4, 6, 7, 5];
+        let sol = (5, 8);
+        assert_eq!(optimal_soln_v2(&arr), sol);
+    }
 
     #[test]
     fn optimal_v1() {

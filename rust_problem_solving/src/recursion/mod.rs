@@ -7,3 +7,6 @@ pub mod fibonacci;
 pub mod n;
 pub mod string;
 pub mod sum;
+mod subsequence_pattern;
+mod subset_sum;
+mod getting_hold;

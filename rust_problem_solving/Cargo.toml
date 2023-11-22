@@ -14,7 +14,7 @@ num = {version="0.4.0", optional = true}
 [features]
 # default = ["binarySearch", "hashing", "linkedList"]
 # default = ["linkedList", "tree", "stack", "queue", "array"]
-default = ["array", "expert"]
+default = ["dynamic_programming", "recursion", "bit"]
 patterns =[]
 maths =[]
 recursion=[]
@@ -27,6 +27,8 @@ linkedList = []
 tree=[]
 stack=[]
 queue=[]
+dynamic_programming=[]
+bit=[]
 
 #dep:funty not required
 # "dep:num"
