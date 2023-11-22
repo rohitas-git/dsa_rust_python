@@ -18,7 +18,7 @@
 use crate::bit::print_binary::*;
 
 fn toggle(number: u32, kth: u32){
-    let mask = (1 << kth);
+    let mask = 1 << kth;
     let toggled = number ^ mask;
 
     print!("Before toggling: {} - ", number);

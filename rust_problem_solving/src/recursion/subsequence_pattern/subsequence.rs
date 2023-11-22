@@ -31,10 +31,13 @@ fn print_subsequence(arr: &[u32], index: usize, subequence: &mut Vec<u32>) {
         return;
     }
 
+    println!("Left index: {}", index);
     subequence.push(arr[index]);
     print_subsequence(arr, index + 1, subequence);
 
     subequence.pop();
+    // println!("Left index: {}, sub: {:?}", index, subequence);
+    println!("Right index: {}", index);
     print_subsequence(arr, index + 1, subequence);
 }
 

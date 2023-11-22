@@ -16,9 +16,6 @@ use maths::{
 #[cfg(feature = "recursion")]
 mod recursion;
 
-#[cfg(feature = "recursion")]
-use recursion::{array::*, factorial::*, fibonacci::*, n::*, string::*, sum::*};
-
 #[cfg(feature = "list")]
 mod list;
 
@@ -48,11 +45,10 @@ mod hashing;
 #[cfg(feature = "linkedList")]
 mod linked_list;
 
-
-#[cfg(feature = "stack")]
-mod stack;
 #[cfg(feature = "queue")]
 mod queue;
+#[cfg(feature = "stack")]
+mod stack;
 
 #[cfg(feature = "dynamic_programming")]
 mod dynamic_programming;
