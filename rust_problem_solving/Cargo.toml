@@ -6,6 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+itertools = "0.12.0"
 # num = "0.4.1"
 # funty = {version = "2.0.0", optional = true}
 # num = {version="0.4.0", optional = true}

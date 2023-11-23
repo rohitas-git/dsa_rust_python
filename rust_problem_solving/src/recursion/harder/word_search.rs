@@ -26,6 +26,9 @@
 // We will also return if we found all the letters of the given word
 // i.e. we found the number of letters equal to the length of the given word.
 
+/* ------------------------------- Complexity ------------------------------- */
+// Time: O(m*n*4^k)  [k-length of the word]
+// Space: O(k)
 /* ------------------------------------ x ----------------------------------- */
 type Board = Vec<Vec<char>>;
 
