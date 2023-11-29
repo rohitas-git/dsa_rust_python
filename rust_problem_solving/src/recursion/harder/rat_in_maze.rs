@@ -11,10 +11,10 @@
 // Note: In a path, no cell can be visited more than one time.
 
 /* ------------------------------- Complexity ------------------------------- */
-// Time: O(4^(m*n) 
+// Time: O(4^(m*n)
 // because on every cell we need to try 4 different directions.
 
-// Space Complexity: O(m*n) 
+// Space Complexity: O(m*n)
 // Maximum Depth of the recursion tree(auxiliary space).
 
 /* ------------------------------------ x ----------------------------------- */
@@ -72,6 +72,23 @@ impl Position {
             return Some(Self::new(x, self.y));
         }
         None
+    }
+
+    fn in_bound(&self,maze: &Vec<Vec<Value>>) -> bool {
+        let n = maze.len();
+        let x = self.x;
+        let y = self.y;
+    
+        y < n && x < n
+    }
+    
+    
+    fn passable_position(&self, maze: &Vec<Vec<Value>>) -> bool {
+        match maze[self.y][self.x] {
+            Blocked => false,
+            Passable => true,
+            Visited => false,
+        }
     }
 }
 
@@ -141,16 +158,17 @@ impl Maze {
         y < n && x < n
     }
 
-    fn passable_current(&self) -> bool {
-        match self.get_value() {
+
+    fn passable_position(&self, position: &Position) -> bool {
+        match self.maze[position.y][position.x] {
             Blocked => false,
             Passable => true,
             Visited => false,
         }
     }
 
-    fn passable_position(&self, position: &Position) -> bool {
-        match self.maze[position.y][position.x] {
+    fn passable_current(&self) -> bool {
+        match self.get_value() {
             Blocked => false,
             Passable => true,
             Visited => false,
@@ -265,6 +283,108 @@ impl Maze {
     }
 }
 
+fn another_solution(maze: Vec<Vec<u32>>) {
+    let mut all_paths: Vec<String> = Vec::new();
+    let mut curr_path = String::new();
+    let curr_position = Some(Position::new(0, 0));
+    let final_position = &Position::new(maze.len() - 1, maze.len() - 1);
+
+    let mut maze: Vec<Vec<Value>> = maze
+        .iter()
+        .map(|row| row.iter().map(|val| get_val(val.clone())).collect())
+        .collect();
+
+    navigate(
+        &mut maze,
+        curr_position,
+        final_position,
+        &mut curr_path,
+        &mut all_paths,
+    );
+
+    dbg!(all_paths);
+}
+
+
+fn navigate(
+    maze: &mut Vec<Vec<Value>>,
+    curr_position: Option<Position>,
+    final_position: &Position,
+    curr_path: &mut String,
+    all_paths: &mut Vec<String>,
+) {
+    
+    if curr_position.is_none() || !curr_position.clone().unwrap().in_bound(maze) || !curr_position.clone().unwrap().passable_position(maze) {
+        return;
+    }
+     else if curr_position.clone().unwrap() == *final_position {
+        all_paths.push(curr_path.clone());
+        return;
+    }
+
+    let curr_position = curr_position.clone().unwrap();
+
+    // choose DOWN
+    curr_path.push('D');
+    maze[curr_position.y][curr_position.x] = Visited;
+    navigate(
+        maze,
+        curr_position.down(),
+        final_position,
+        curr_path,
+        all_paths,
+    );
+
+    // backtrack DOWN
+    curr_path.pop();
+    maze[curr_position.y][curr_position.x] = Passable;
+
+    // choose UP
+    curr_path.push('U');
+    maze[curr_position.y][curr_position.x] = Visited;
+    navigate(
+        maze,
+        curr_position.up(),
+        final_position,
+        curr_path,
+        all_paths,
+    );
+
+    // backtrack UP
+    curr_path.pop();
+    maze[curr_position.y][curr_position.x] = Passable;
+
+    // choose LEFT
+    curr_path.push('L');
+    maze[curr_position.y][curr_position.x] = Visited;
+    navigate(
+        maze,
+        curr_position.left(),
+        final_position,
+        curr_path,
+        all_paths,
+    );
+
+    // backtrack LEFT
+    curr_path.pop();
+    maze[curr_position.y][curr_position.x] = Passable;
+
+    // choose RIGHT
+    curr_path.push('R');
+    maze[curr_position.y][curr_position.x] = Visited;
+    navigate(
+        maze,
+        curr_position.right(),
+        final_position,
+        curr_path,
+        all_paths,
+    );
+
+    // backtrack RIGHT
+    curr_path.pop();
+    maze[curr_position.y][curr_position.x] = Passable;
+}
+
 #[cfg(test)]
 mod test_super {
     use std::vec;
@@ -274,7 +394,8 @@ mod test_super {
     #[test]
     fn test_finding_paths() {
         let maze = vec![vec![1u32, 1, 1], vec![1, 0, 1], vec![1, 1, 1]];
-        all_paths(maze);
+        // all_paths(maze);
+        another_solution(maze);
 
         let maze = vec![
             vec![1u32, 0, 0, 0],
@@ -282,6 +403,7 @@ mod test_super {
             vec![1, 1, 0, 0],
             vec![0, 1, 1, 1],
         ];
-        all_paths(maze);
+        // all_paths(maze);
+        another_solution(maze);
     }
 }
