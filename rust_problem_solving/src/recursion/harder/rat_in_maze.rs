@@ -10,6 +10,13 @@
 
 // Note: In a path, no cell can be visited more than one time.
 
+/* ------------------------------- Complexity ------------------------------- */
+// Time: O(4^(m*n) 
+// because on every cell we need to try 4 different directions.
+
+// Space Complexity: O(m*n) 
+// Maximum Depth of the recursion tree(auxiliary space).
+
 /* ------------------------------------ x ----------------------------------- */
 
 use Value::*;
@@ -18,6 +25,14 @@ use Value::*;
 enum Value {
     Blocked,
     Passable,
+    Visited,
+}
+
+fn get_val(x: u32) -> Value {
+    match x {
+        1 => Passable,
+        _ => Blocked,
+    }
 }
 
 #[derive(Debug, PartialEq, Clone)]
@@ -31,23 +46,36 @@ impl Position {
         Position { x, y }
     }
 
-    fn down(&self) -> Self {
-        Self::new(self.x, self.y + 1)
+    fn down(&self) -> Option<Self> {
+        if let Some(y) = self.y.checked_add(1) {
+            return Some(Self::new(self.x, y));
+        }
+        None
     }
 
-    fn up(&self) -> Self {
-        Self::new(self.x, self.y - 1)
+    fn up(&self) -> Option<Self> {
+        if let Some(y) = self.y.checked_sub(1) {
+            return Some(Self::new(self.x, y));
+        }
+        None
     }
 
-    fn right(&self) -> Self {
-        Self::new(self.x + 1, self.y)
+    fn right(&self) -> Option<Self> {
+        if let Some(x) = self.x.checked_add(1) {
+            return Some(Self::new(x, self.y));
+        }
+        None
     }
 
-    fn left(&self) -> Self {
-        Self::new(self.x - 1, self.y)
+    fn left(&self) -> Option<Self> {
+        if let Some(x) = self.x.checked_sub(1) {
+            return Some(Self::new(x, self.y));
+        }
+        None
     }
 }
 
+#[derive(Debug, Clone)]
 struct Maze {
     maze: Vec<Vec<Value>>,
     curr_position: Position,
@@ -59,16 +87,50 @@ impl Maze {
         let x = self.curr_position.x;
         let y = self.curr_position.y;
 
-        self.maze[x][y].clone()
+        self.maze[y][x].clone()
     }
 
-    fn new(maze: Vec<Vec<Value>>) -> Self {
+    fn get_value_mut(&mut self) -> &mut Value {
+        let x = self.curr_position.x;
+        let y = self.curr_position.y;
+
+        &mut self.maze[y][x]
+    }
+
+    fn value_at(&mut self, position: &Position) -> &mut Value {
+        let x = position.x;
+        let y = position.y;
+
+        &mut self.maze[y][x]
+    }
+
+    fn set_visited(&mut self, position: &Position) -> bool {
+        let val = self.value_at(position);
+        *val = Visited;
+        true
+    }
+
+    fn set_passable(&mut self, position: &Position) -> bool {
+        let val = self.value_at(position);
+        *val = Passable;
+        true
+    }
+
+    fn new(maze: Vec<Vec<u32>>) -> Self {
         let n = maze.len();
+        let maze = maze
+            .iter()
+            .map(|row| row.iter().map(|val| get_val(val.clone())).collect())
+            .collect();
         Maze {
             maze,
             curr_position: Position::new(0, 0),
             final_position: Position::new(n - 1, n - 1),
         }
+    }
+
+    fn print_position(&self) {
+        println!("Here: ({},{})", self.curr_position.x, self.curr_position.y);
     }
 
     fn in_bound(&self, position: &Position) -> bool {
@@ -83,107 +145,125 @@ impl Maze {
         match self.get_value() {
             Blocked => false,
             Passable => true,
+            Visited => false,
         }
     }
 
     fn passable_position(&self, position: &Position) -> bool {
-        match self.maze[position.x][position.y] {
+        match self.maze[position.y][position.x] {
             Blocked => false,
             Passable => true,
+            Visited => false,
         }
     }
 
     fn down(&mut self) -> Option<Position> {
-        let new_pos = &self.curr_position.down();
+        let prev_pos = self.curr_position.clone();
+        let new_pos = &self.curr_position.down()?;
         if self.in_bound(new_pos) && self.passable_position(new_pos) {
             self.curr_position = new_pos.clone();
-            return Some(new_pos.clone());
+            return Some(prev_pos.clone());
         }
         None
     }
 
     fn up(&mut self) -> Option<Position> {
-        let new_pos = &self.curr_position.up();
+        let prev_pos = self.curr_position.clone();
+        let new_pos = &self.curr_position.up()?;
         if self.in_bound(new_pos) && self.passable_position(new_pos) {
             self.curr_position = new_pos.clone();
-            return Some(new_pos.clone());
+            return Some(prev_pos.clone());
         }
         None
     }
 
     fn right(&mut self) -> Option<Position> {
-        let new_pos = &self.curr_position.right();
+        let prev_pos = self.curr_position.clone();
+        let new_pos = &self.curr_position.right()?;
         if self.in_bound(new_pos) && self.passable_position(new_pos) {
             self.curr_position = new_pos.clone();
-            return Some(new_pos.clone());
+            return Some(prev_pos.clone());
         }
         None
     }
 
     fn left(&mut self) -> Option<Position> {
-        let new_pos = &self.curr_position.left();
+        let prev_pos = self.curr_position.clone();
+        let new_pos = &self.curr_position.left()?;
         if self.in_bound(new_pos) && self.passable_position(new_pos) {
             self.curr_position = new_pos.clone();
-            return Some(new_pos.clone());
+            return Some(prev_pos.clone());
         }
         None
     }
 }
 
-fn backtrack(path: &mut Vec<Position>) -> Option<Position> {
+fn backtrack(path: &mut String) -> Option<char> {
     path.pop()
 }
 
-fn all_paths(maze: Vec<Vec<Value>>) {
-    let n = maze.len();
-    let mut all_paths: Vec<Vec<Position>> = Vec::new();
-    let mut curr_path = Vec::new();
+fn all_paths(maze: Vec<Vec<u32>>) {
+    let mut all_paths: Vec<String> = Vec::new();
+    let mut curr_path = String::new();
     let mut maze = Maze::new(maze);
 
-    maze.get_paths(&mut curr_path, &mut all_paths);
+    maze.get_paths(&mut curr_path, 0, &mut all_paths);
 
     dbg!(all_paths);
 }
 
 impl Maze {
-    fn get_paths(&mut self, curr_path: &mut Vec<Position>, all_paths: &mut Vec<Vec<Position>>) {
+    fn get_paths(&mut self, curr_path: &mut String, _index: u32, all_paths: &mut Vec<String>) {
         if self.curr_position == self.final_position {
             all_paths.push(curr_path.clone());
             return;
         }
 
-        if let Some(position) = self.down(){
-            curr_path.push(position);
-            self.get_paths(curr_path, all_paths);
-            
+        println!("{}: Right {}", _index, curr_path);
+        if let Some(position) = self.right() {
+            self.set_visited(&position);
+            curr_path.push('R');
+            self.get_paths(curr_path, _index + 1, all_paths);
+
             backtrack(curr_path);
+            self.set_passable(&position);
+            self.left();
         };
 
+        println!("{}: Down {}", _index, curr_path);
+        if let Some(position) = self.down() {
+            self.set_visited(&position);
+            curr_path.push('D');
+            self.get_paths(curr_path, _index + 1, all_paths);
 
-        if let Some(position) = self.up(){
-            curr_path.push(position);
-            self.get_paths(curr_path, all_paths);
-            
             backtrack(curr_path);
+            self.set_passable(&position);
+            self.up();
         };
 
+        println!("{}: Up {}", _index, curr_path);
+        if let Some(position) = self.up() {
+            self.set_visited(&position);
+            curr_path.push('U');
+            self.get_paths(curr_path, _index + 1, all_paths);
 
-        if let Some(position) = self.right(){
-            curr_path.push(position);
-            self.get_paths(curr_path, all_paths);
-            
             backtrack(curr_path);
+            self.set_passable(&position);
+            self.down();
         };
 
-        if let Some(position) = self.left(){
-            curr_path.push(position);
-            self.get_paths(curr_path, all_paths);
-            
+        println!("{}: Left {}", _index, curr_path);
+        if let Some(position) = self.left() {
+            self.set_visited(&position);
+            curr_path.push('L');
+            self.get_paths(curr_path, _index + 1, all_paths);
+
             backtrack(curr_path);
+            self.set_passable(&position);
+            self.right();
         };
     }
 }
-
 
 #[cfg(test)]
 mod test_super {
@@ -193,6 +273,15 @@ mod test_super {
 
     #[test]
     fn test_finding_paths() {
-        let maze = vec![vec![]];
+        let maze = vec![vec![1u32, 1, 1], vec![1, 0, 1], vec![1, 1, 1]];
+        all_paths(maze);
+
+        let maze = vec![
+            vec![1u32, 0, 0, 0],
+            vec![1, 1, 0, 1],
+            vec![1, 1, 0, 0],
+            vec![0, 1, 1, 1],
+        ];
+        all_paths(maze);
     }
 }
