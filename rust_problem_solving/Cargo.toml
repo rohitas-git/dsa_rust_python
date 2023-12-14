@@ -14,7 +14,7 @@ edition = "2021"
 [features]
 # default = ["binarySearch", "hashing", "linkedList"]
 # default = ["linkedList", "tree", "stack", "queue", "array"]
-default = ["dynamic_programming", "recursion", "bit"]
+default = ["dynamic_programming", "recursion", "bit", "stack"]
 patterns =[]
 maths =[]
 recursion=[]

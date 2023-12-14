@@ -2,6 +2,7 @@
 mod word_search;
 mod rat_in_maze;
 mod palindrome_paritioning;
+mod sudoku_solver;
 
 mod r6_merge_sort;
 mod r7_quicksort;
